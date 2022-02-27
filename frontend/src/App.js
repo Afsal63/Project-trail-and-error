@@ -1,9 +1,21 @@
+import React from "react";
+import MainPage from "./screens/pages/MainPage";
+ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import ProductScreen from "./screens/ProductScreen";
+
 
 
 const App=()=> {
   return (
+    
     <>
-    <h1>Welcome ot Sports Cart</h1>
+    <Router>
+
+      <Routes>
+<Route path='/' element={<MainPage/>}></Route>
+<Route path='/product/:id' element={<ProductScreen/>}></Route>
+</Routes>
+</Router>
     </>
   );
 }

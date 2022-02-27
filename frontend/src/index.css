@@ -1,0 +1,30 @@
+main{
+  min-height: 80vh;
+}
+.header-logo{
+  font-family: 'Rancho', sans-serif;
+  text-transform: initial;  
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.tt{
+  text-decoration: none;
+ 
+}
+h3{
+  padding:1rem 0 ;
+}
+.rating span{
+  margin: 0.rem;
+}
+a{
+  cursor: pointer;
+}
+.card1{
+  overflow: hidden;
+  height: 35rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  
+}
