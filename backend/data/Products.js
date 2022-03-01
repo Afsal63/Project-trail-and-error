@@ -1,6 +1,6 @@
  const Products=[
     {
-        _id:"1",
+        
         name:'Ashaway Badimintion Racket',
         image:'/images/ashaway.jpeg',
         description:'Badmintion Racket for advanced players built in by carbon',
@@ -9,8 +9,10 @@
         countInStock:0,
         rating:4.5,
         numReviews:4,
+        category:"hai"
+        
     },{
-        _id:"2",
+     
         name: 'Tennis Racket',
         image:'/images/tennis1.jpeg',
         description:'Tennis Racket for advanced players built in by carbon',
@@ -19,8 +21,10 @@
         countInStock:2,
         rating:2,
         numReviews:3,
+        category:"hai"
+       
     },{
-        _id:"3",
+        
         name:'Ashaway Badimintion Racket',
         image:'/images/tennis2.jpeg',
         description:'tennis Racket for Intermidiate players built in by carbon',
@@ -29,8 +33,10 @@
         countInStock:3,
         rating:4.5,
         numReviews:4,
+        category:"hai"
+       
     },{
-        _id:"4",
+        
         name:'Yonex Badimintion Racket',
         image:'/images/yonex.jpeg',
         description:'Badmintion Racket for advanced players built in by carbon',
@@ -39,8 +45,10 @@
         countInStock:5,
         rating:4,
         numReviews:2,
+        category:"hai"
+    
     },{
-        _id:"5",
+        
         name:'Yonex Badimintion Racket',
         image:'/images/yonex1.jpeg',
         description:'Badmintion Racket for advanced players built in by carbon',
@@ -49,6 +57,8 @@
         countInStock:3,
         rating:4.5,
         numReviews:4,
+        category:"hai"
+       
     },
 ]
 export default Products
