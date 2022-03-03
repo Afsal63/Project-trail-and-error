@@ -22,7 +22,8 @@ a{
 }
 .card1{
   overflow: hidden;
-  height: 45rem;
+  min-height: 38rem;
+  height: auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
 

@@ -46,7 +46,7 @@ const productSchema = mongoose.Schema({
     },
     numReview: {
         type: Number,
-        type: String,
+        // type: String,
         required: true,
         default: 0
     },

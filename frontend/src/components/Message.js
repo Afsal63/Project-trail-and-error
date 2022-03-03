@@ -1,7 +1,7 @@
 import React from 'react'
 import { Alert } from 'react-bootstrap'
 
-const Massage = ({variant,children}) => {
+const Message = ({variant,children}) => {
   return (
     <div>
 <Alert variant={variant}>
@@ -12,7 +12,7 @@ const Massage = ({variant,children}) => {
     </div>
   )
 }
-Massage.defaultProps={
+Message.defaultProps={
     variant:'info',
 }
-export default Massage
+export default Message

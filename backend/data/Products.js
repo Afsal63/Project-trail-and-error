@@ -16,7 +16,7 @@
         name: 'Tennis Racket',
         image:'/images/tennis1.jpeg',
         description:'Tennis Racket for advanced players built in by carbon',
-        brand: 'Sg',
+        brand: 'S',
         price: 75,
         countInStock:2,
         rating:2,

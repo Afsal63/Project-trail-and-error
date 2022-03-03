@@ -18,7 +18,7 @@ asyncHandler(async (req,res)=>{
 //@route Get /api/products/:id
 //@acces Public 
 router.get('/:id',asyncHandler(async(req,res)=>{
-    console.log(req.params.id);
+ 
     const product = await Product.findById(req.params.id)
 
 

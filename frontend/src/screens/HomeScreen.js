@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, } from 'react-bootstrap'
 import Product from '../components/Product'
-import Massage from '../components/Massage'
+import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts } from '../actions/productAction'
 
@@ -14,10 +14,11 @@ const HomeScreen = () => {
 
   const productList = useSelector(state => state.productList)
   const { loading, error, products } = productList
-  console.log(products)
+  
 
   useEffect(() => {
     dispatch(listProducts())
+   
 
 
   }, [dispatch])
@@ -28,7 +29,7 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>
       {loading ? (
      <Loader/>
-      ) : error ? (<Massage variant='danger'>{error}</Massage> 
+      ) : error ? (<Message variant='danger'>{error}</Message> 
       ):(
       <Row>
 
