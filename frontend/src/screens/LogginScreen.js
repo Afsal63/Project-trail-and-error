@@ -7,6 +7,7 @@ import Loader from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import {login} from '../actions/userActions'
 
+
 const LogginScreen = () => {
 const [email,setEmail]=useState('')
 const[password,setPassword]=useState('')
@@ -29,6 +30,7 @@ useEffect(()=>{
 },[userInfo,redirect,])
   return (
     <FormContainer>
+     
       <h1>Sign In</h1>
       {error &&<Message variant='danger'>{error}</Message>}
       {loading &&<Loader/>}
@@ -48,7 +50,7 @@ useEffect(()=>{
       <Row className='py-3'>
         <Col>
         Create New account ?{''}
-        <Link to={redirect ?`/register?redirect=${redirect}`: '/register'}></Link>
+        <Link to={redirect ?`/register?redirect=${redirect}`: '/register'}> Register</Link>
         </Col>
       </Row>
     </FormContainer>
