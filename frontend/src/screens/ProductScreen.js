@@ -8,6 +8,7 @@ import Rating from '../components/Rating';
 import { listProductDetails } from '../actions/productAction';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import HomeScreen from '../screens/HomeScreen'
 
 
 
@@ -118,7 +119,8 @@ const ProductScreen = () => {
 
                 </Row>
             )}
-
+   
+       <HomeScreen/>
             <main></main>
             <Footer />
         </>
