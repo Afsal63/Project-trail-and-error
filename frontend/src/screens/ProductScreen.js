@@ -3,12 +3,13 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { Row, Col, Image, ListGroup, Button, Card,  Form } from 'react-bootstrap'
+import { Row, Col, Image, ListGroup, Button, Card,  Form, Container } from 'react-bootstrap'
 import Rating from '../components/Rating';
 import { listProductDetails } from '../actions/productAction';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import HomeScreen from '../screens/HomeScreen'
+import '../index.css';
 
 
 
@@ -38,7 +39,9 @@ const ProductScreen = () => {
     return (
         <>
 
-            <Header />
+
+
+            <Header  />
             <Button className='btn btn-light m-3' onClick={(e) => navigate('/')}>Go back</Button>
             {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
 
@@ -123,6 +126,7 @@ const ProductScreen = () => {
        <HomeScreen/>
             <main></main>
             <Footer />
+            
         </>
     )
 }
