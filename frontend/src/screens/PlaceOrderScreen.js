@@ -1,15 +1,17 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Checkout from '../components/Checkout'
 import { Link } from 'react-router-dom'
 import Header from '../components/Header'
+import { createOrder } from '../actions/oorderActions'
+import { useNavigate } from 'react-router-dom'
 
 const PlaceOrderScreen = () => {
+    const dispatch =useDispatch()
     const cart = useSelector((state) => state.cart)
- 
-
+ const navigate=useNavigate()
     
     //Calculate Prices
     const addDecimals = (num) => {
@@ -29,10 +31,29 @@ const PlaceOrderScreen = () => {
         Number(cart.taxPrice)
        
     ).toFixed(2)
-    
-    const  PlaceOrderHandler = ()=>{
+    const orderCreate =useSelector(state=>state.orderCreate)
+    const {order,success, error} = orderCreate
+
+    useEffect(()=>{
+       if(success) {
+           navigate(`/order/${order._id}`)
+       }
        
-       console.log('Order placed');
+    },[navigate,success])
+    const  PlaceOrderHandler = ()=>{
+       dispatch(
+        createOrder({
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            paymentMethod: cart.paymentMethod,
+            itemsPrice: cart.itemsPrice,
+            shippingPrice: cart.shippingPrice,
+            taxPrice: cart.taxPrice,
+            totalPrice: cart.totalPrice,
+           
+        })
+        )
+      
 
    }
     return (
@@ -134,6 +155,9 @@ const PlaceOrderScreen = () => {
                                     <Col>Totel </Col>
                                     <Col>${cart.totalPrice}</Col>
                                 </Row>
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                {error && <Message variant='danger'>{error}</Message>}
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Button type='button' className='btn-block' disabled={cart.cartItem===0}
