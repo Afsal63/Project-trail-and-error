@@ -4,7 +4,7 @@ import { Row, Col, ListGroup, Image, Form, Button, Card, ListGroupItem } from 'r
 import Message from '../components/Message'
 import { addToCart, removeFromCart} from '../actions/cartAction'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import Header from '../components/Header'
+// import Header from '../components/Header'
 
 
 
@@ -35,7 +35,7 @@ const CartScreen = () => {
   return (
     
     <Row>
-      <Header/>
+      {/* <Header/> */}
       <Col md={8}>
         <h1>shoping Cart</h1>
         {cartItems.length === 0 ? <Message>You cart is Empty <Link to='/'>Go back</Link></Message> : (

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Checkout from '../components/Checkout'
 import { Link } from 'react-router-dom'
-import Header from '../components/Header'
-import { createOrder } from '../actions/oorderActions'
+// import Header from '../components/Header'
+import { createOrder } from '../actions/orderActions'
 import { useNavigate } from 'react-router-dom'
 
 const PlaceOrderScreen = () => {
@@ -58,7 +58,7 @@ const PlaceOrderScreen = () => {
    }
     return (
         <>
-        <Header/>
+        {/* <Header/> */}
             <Checkout step1 step2 step3 step4 />
             <Row>
                 <Col md={8}>

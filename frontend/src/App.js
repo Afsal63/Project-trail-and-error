@@ -10,6 +10,7 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import Header from "./components/Header";
 
 
 const App = () => {
@@ -17,15 +18,16 @@ const App = () => {
 
     <>
       <Router>
+    
 
 
+  <Header/>
         <Routes>
-
           <Route path='/order/:id' element={<OrderScreen />}></Route>
           <Route path='/login' element={<LogginScreen />}></Route>
           <Route path='/placeorder' element={<PlaceOrderScreen />}></Route>
           <Route path='/payment' element={<PaymentScreen />}></Route>
-        <Route path='/register' element={<RegisterScreen/>}></Route>
+          <Route path='/register' element={<RegisterScreen/>}></Route>
           <Route path='/product/:id' element={<ProductScreen />}></Route>
           <Route path="/shipping" element={<ShippingScreen/>}></Route>
           <Route path="/profile" element={<ProfileScreen/>}></Route>

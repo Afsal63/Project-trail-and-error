@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Footer from '../components/Footer'
-import Header from '../components/Header'
+// import Header from '../components/Header'
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Button, Card,  Form, Container } from 'react-bootstrap'
@@ -42,7 +42,7 @@ const ProductScreen = () => {
 
 
 
-            <Header  />
+            {/* <Header  /> */}
             <Button className='btn btn-light m-3' onClick={(e) => navigate('/')}>Go back</Button>
             {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
 
