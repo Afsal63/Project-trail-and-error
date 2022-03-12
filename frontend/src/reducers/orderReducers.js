@@ -96,7 +96,7 @@ export const orderListMyReducer =(state={orders:[]},action )=>{
             case ORDER_LIST_MY_SUCCESS:
                 return{
                    loading:false,
-                   order:action.payload,
+                   orders:action.payload,
 
                 }
                 case ORDER_LIST_MY_FAIL:

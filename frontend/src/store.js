@@ -32,7 +32,7 @@ const reducer = combineReducers({
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay:orderPayReducer,
-    orderMyListMy:orderListMyReducer
+    orderMyList:orderListMyReducer
 
 })
 

@@ -1,11 +1,13 @@
 import React, {  } from 'react'
 import { useEffect,useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Form, Button, Row, Col, Container } from 'react-bootstrap'
+import {  useNavigate } from 'react-router-dom'
+import {Button, Form, Container, Row, Col, Table, Card, Tabs, Tab, Nav, Image  } from 'react-bootstrap'
+import{LinkContainer} from 'react-router-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getUserDetails,updateUserProfile } from '../actions/userActions'
 import { useDispatch ,useSelector} from 'react-redux'
+import { listMyOrders } from '../actions/orderActions'
 
 
 const ProfileScreen = () => {
@@ -26,6 +28,15 @@ const ProfileScreen = () => {
     const userUpdateProfile =useSelector(state=>state.userUpdateProfile)
     const {success}=userUpdateProfile
 
+
+    const orderListMy = useSelector((state) => 
+
+    state.orderMyList)
+   
+  const { loading: loadingOrders, error: errorOrders,orders:orders} = orderListMy
+
+   
+
   useEffect(() => {
    
     if (!userInfo) {
@@ -33,7 +44,7 @@ const ProfileScreen = () => {
     } else {
       if (!user.name) {
         dispatch(getUserDetails('profile'))
-       
+       dispatch(listMyOrders())
       } else {
         setName(user.name)
         setEmail(user.email)
@@ -58,7 +69,7 @@ const ProfileScreen = () => {
 
        
         <Row>
-            <Col md={3}>
+            <Col md={3 } >
                 <h2>User Profile</h2>
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
@@ -106,9 +117,77 @@ const ProfileScreen = () => {
                     </Button>
                 </Form>
             </Col>
-            <Col md={9}>
-                <h2>My Order</h2>
-            </Col>
+
+     
+                
+              
+                  <Col className=''>
+                    <h2 className='text-center pt-3'>My Orders</h2>
+                    {loadingOrders ? (
+                      <Loader />
+                    ) : errorOrders ? (
+                      <Message variant='danger'>{errorOrders}</Message>
+                    ) : (
+                      <Table striped bordered hover responsive className='table-sm tableColor'>
+
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th>DATE</th>
+                            <th>TOTAL</th>
+                            <th>PAID</th>
+                            <th>DELIVERED</th>
+                            {/* <th>CANCELLED</th> */}
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                      
+
+                        {orders.map((order) => (
+                              <tr key={order._id}>
+                                <td>{order._id}</td>
+                                <td>{order.createdAt}</td>
+                                <td>{order.totalPrice}</td>
+                                <td>
+                                  {order.isPaid ? (
+                                    order.paidAt
+                                  ) : (
+                                    <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                  )}
+                              </td>
+                              <td>
+                                {order.isDelivered ? (
+                                  order.deliveredAt
+                                ) : (
+                                  <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                )}
+                              </td>
+                              {/* <td>
+                                {order.isCancelled ? (
+                                  <>
+                                  <i class="fa fa-check" aria-hidden="true" style={{ color: 'green' }}></i>
+                                  {order.deliveredAt}
+                                  </>
+                                ) : (
+                                  <i className='fas fa-times' style={{ color: 'red' }}></i>
+                                )}
+                              </td> */}
+                              <td>
+                                <LinkContainer to={`/order/${order._id}`}>
+                                  <Button className='btn-sm' variant='light'>
+                                    Details
+                                  </Button>
+                                </LinkContainer>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                    )}
+                  </Col>
+               
+           
         </Row>
         </Container>
     )

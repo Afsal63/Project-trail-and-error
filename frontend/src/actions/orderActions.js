@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { config } from 'dotenv'
+// import { config } from 'dotenv'
 import {ORDER_CREAT_REQUEST,
     ORDER_CREAT_SUCCESS,
     ORDER_CREAT_FAIL,
@@ -10,7 +10,8 @@ ORDER_PAY_REQUEST,
 ORDER_PAY_SUCCESS,
 ORDER_PAY_FAIL,
 ORDER_LIST_MY_REQUEST,
-ORDER_LIST_MY_SUCCESS} from'../constants/orderConstants' 
+ORDER_LIST_MY_SUCCESS,
+ORDER_LIST_MY_FAIL} from'../constants/orderConstants' 
     export const createOrder = (order) => async (dispatch, getState) => {
         try {
             dispatch({ type: ORDER_CREAT_REQUEST })
@@ -94,13 +95,14 @@ getState
       const {
         userLogin:{userInfo}  
       } =getState()
- const confg={
+ const config={
      headers:{
         Authorization:`Bearer ${userInfo.token}`,
      },
  }
 
  const {data}=await axios.get(`/api/orders/myorders`,config)
+ 
 
  dispatch({
      type:ORDER_LIST_MY_SUCCESS,
@@ -108,6 +110,14 @@ getState
  })
 
     } catch (error) {
-        
+        dispatch({
+
+            type: ORDER_LIST_MY_FAIL,
+            payload:
+            error.response && error.response.data.message 
+            ? error.message.data.message
+            :error.messaeg,
+        })
+
     }
 }
