@@ -18,7 +18,10 @@ import { USER_DETAILS_REQUEST,
         USER_LIST_RESET,
         USER_DELETE_REQUEST,
         USER_DELETE_SUCCESS,
-        USER_DELETE_FAIL
+        USER_DELETE_FAIL,
+        USER_UPDATE_REQUEST,
+        USER_UPDATE_SUCCESS,
+        USER_UPDATE_FAIL
      } from "../constants/userConstants"
 import {ORDER_LIST_MY_RESET} from '../constants/orderConstants'
 
@@ -192,3 +195,74 @@ export const listUsers = ()=>async (dispatch,getState)=>{
           })
       }
   }
+
+  
+//  export const updateUser =(user)=>async(dispatch,getState)=>{
+     
+//      try {
+//          dispatch({
+//              type:USER_UPDATE_REQUEST
+//          })
+//          const {
+//              userLogin:{userInfo},
+
+//          }=getState()
+
+//          const config={
+//              headers:{
+//                  'Content-Type': 'applliction/json',
+//                  Authorization:`Bearer${userInfo.token}`
+//              },
+//          }
+//          console.log(user);
+//          const {data}= await axios.put(`/api/users/${user._id}`,{user},config)
+//          console.log(data);
+        
+//          dispatch({type:USER_UPDATE_SUCCESS})
+//          dispatch({type:USER_DETAILS_SUCCESS,payload:data})
+//      } catch (error) {
+//          dispatch({
+//              type:USER_UPDATE_FAIL,
+//              payload:error.response&& error.response.data.message
+//              ?error.response.data.message
+//              :error.message
+//          })
+//      }
+//  }
+
+
+export const updateUser = (user) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: USER_UPDATE_REQUEST,
+      })
+  
+      const {
+        userLogin: { userInfo },
+      } = getState()
+  
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+  
+      const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+  
+      dispatch({ type: USER_UPDATE_SUCCESS })
+  
+      dispatch({ type: USER_DETAILS_SUCCESS, payload: data })
+  
+      dispatch({ type: USER_DETAIS_RESET })
+    } catch (error) {
+                 dispatch({
+                     type:USER_UPDATE_FAIL,
+                     payload:error.response&& error.response.data.message
+                     ?error.response.data.message
+                     :error.message
+                 })
+             }
+         }
+  
+        

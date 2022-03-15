@@ -76,28 +76,31 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 
 })
-// @desc Update user profile
-// @route PUT /api/users/profile
-// #access Private
-const updateUserProfile = asyncHandler(async(req,res)=>{
-  const user =await User.findById(req.user._id)
-  if(user){
-    user.name= req.body.name || user.name
-    user.email =req.body.email || user.email
-    if(req.body.password){
-      user.password= req.body.password
+
+
+// @desc    Update user profile
+// @route   PUT /api/users/profile
+// @access  Private
+const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    if (req.body.password) {
+      user.password = req.body.password
     }
-    const updatedUser =await user.save()
+
+    const updatedUser = await user.save()
 
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
-      token:generateToken(updatedUser._id),
-
+      token: generateToken(updatedUser._id),
     })
-  }else{
+  } else {
     res.status(404)
     throw new Error('User not found')
   }
@@ -149,16 +152,21 @@ const getUserById= asyncHandler(async(req,res)=>{
 //@access Private/Admin
 
 const updateUser = asyncHandler(async(req,res)=>{
+  const {name} = req.body
   const user = await User.findById(req.params.id)
 
+
+
   if (user) {
+    
     user.name = req.body.name || user.name
+
     user.email = req.body.email || user.email
     user.isAdmin = req.body.isAdmin || user.isAdmin
     // user.isBlocked = req.body.isBlocked || user.isBlocked
 
     const updatedUser = await user.save()
-
+    
     res.json({
       _id: updatedUser._id,
       name: updatedUser.name,

@@ -21,7 +21,7 @@ const users = [
     },
 
     {
-
+    name:"karthik",
        email : "karthik@exaple.com",
        
        password: "1234"
