@@ -44,7 +44,7 @@ const PriductListScreen = () => {
       if (window.confirm('Are you sure')){
 dispatch(deleteProduct(id))
 
-// window.location.reload(false);
+//  window.location.reload(false);
      
       }
   }
